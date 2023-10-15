@@ -1,0 +1,32 @@
+[
+  {
+    "name": "toilet 1",
+    "rating": 4.1,
+    "distance": 50.0
+  },
+  {
+    "name": "toilet 2",
+    "rating": 3.0,
+    "distance": 100.0
+  },
+  {
+    "name": "toilet 3",
+    "rating": 4.5,
+    "distance": 80.0
+  },
+  {
+    "name": "toilet 4",
+    "rating": 3.2,
+    "distance": 75.0
+  },
+  {
+    "name": "toilet 5",
+    "rating": 2.8,
+    "distance": 45.0
+  },
+  {
+    "name": "toilet 6",
+    "rating": 4.5,
+    "distance": 80.0
+  }
+]

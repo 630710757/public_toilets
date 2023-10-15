@@ -2,6 +2,8 @@
 
 //import 'dart:ffi';
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:public_toilets/models/toilet.dart';
@@ -17,9 +19,25 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _toiletNameController = TextEditingController();
-  final _toiletPointController = TextEditingController;
-  final _toiletDistanceController = TextEditingController();
   //name,point,distance
+
+  @override
+  void initState() {
+    super.initState();
+    var data = ToiletRepository.readJsonData('assets/data/toilets.json');
+      data.then(getResult);
+  }
+
+  getResult(String result){
+    debugPrint(result);
+    List list = jsonDecode(result);
+    List<Toilet> toiletList = list.map((item) => Toilet.fromJson(item)).toList();
+
+    setState(() {
+      ToiletRepository.toilets = toiletList;
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Expanded(
                       child: TextField(
-                        controller: _toiletDistanceController,
+                        //controller: _toiletDistanceController,
                         decoration: InputDecoration(
                           hintText: 'distance',
                           border: OutlineInputBorder(
@@ -95,8 +113,6 @@ class _HomePageState extends State<HomePage> {
                     onPressed: () {
                       _toiletNameController.text;
                       var toiletName = _toiletNameController.text;
-                      //_toiletPointController.selection.hashCode;
-                      //var toiletPoint = _toiletPointController.hashCode;
                       //homework!!!!!
                       var toilet =
                           Toilet(name: toiletName, point: 3.0, distance: 530.6);
